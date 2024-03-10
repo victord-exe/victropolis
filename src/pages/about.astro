@@ -1,5 +1,21 @@
 ---
+const pageTitle = "About"
 
+const identity = {
+    firstname: "Victor",
+    lastname: "Rodriguez",
+    country: "Venezuela",
+    currentCountry: "Panama",
+    occupation: "Student",
+    hobbies: ["Programming", "Gaming", "Skating"],
+};
+
+const skills = ["PYTHON", "JAVA", "ASTRO", "PL/SQL"]
+
+
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
 <html lang="en">
@@ -8,20 +24,47 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Victropolis</title>
+		<title>{pageTitle}</title>
         <nav>
             <div>
                 <a href="/">Home</a>
-                <a href="/about">About</a>    
-                <a href="/Blog">Blog</a>        
+                <a href="/about">{pageTitle}</a>    
+                <a href="/blog">Blog</a>        
             </div>
         </nav>
 	</head>
 	<body>
-        
 		<h1>About</h1>
         <h2> And...</h2>
 		<p> My name is Victor and this is my first web Astro-based</p>
+
+        <p>He aquí algunos datos sobre mi. Yo sé q tan en spanglish dejenme ser</p>
+
+        <ul>
+            <li>
+                Me llamo {identity.firstname}.
+            </li>
+            <li>
+                Soy de {identity.country} pero actualmente vivo en {identity.currentCountry}.
+                y mi ocupacion es {identity.occupation}
+            </li>
+            {identity.hobbies.length >= 2 &&
+                <li>
+                    Mis hobbies son {identity.hobbies.join(", ")}.  
+                </li>
+            }
+         </ul>
+
+         <p>Mis habilidades son</p>
+         <ul>
+            {skills.map((skill) =>
+                <li> {skill}</li>
+            )}
+         </ul>
+
+        {happy && <p>¡Estoy feliz!</p>}
+        {finished || <p>¡he terminado!</p>}
+        {goal === 3 ? <p>Mi objetivo es terminar en 3 días.</p> : <p>Mi objetivo no son 3 días.</p>}
 	</body>
 </html>
 	
