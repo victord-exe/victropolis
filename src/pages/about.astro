@@ -1,4 +1,6 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css'
 const pageTitle = "About"
 
@@ -30,13 +32,6 @@ const textCase = "uppercase";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
-        <nav>
-            <div>
-                <a href="/">Home</a>
-                <a href="/about">{pageTitle}</a>    
-                <a href="/blog">Blog</a>        
-            </div>
-        </nav>
         <style define:vars={{skillColor, fontWeight, textCase}}>
             h1 {
               color: purple;
@@ -50,7 +45,9 @@ const textCase = "uppercase";
             }
           </style>
 	</head>
+    
 	<body>
+        <Header />
 		<h1>About</h1>
         <h2> And...</h2>
 		<p> My name is Victor and this is my first web Astro-based</p>
@@ -82,6 +79,8 @@ const textCase = "uppercase";
         {happy && <p>¡Estoy feliz!</p>}
         {finished || <p>¡he terminado!</p>}
         {goal === 3 ? <p>Mi objetivo es terminar en 3 días.</p> : <p>Mi objetivo no son 3 días.</p>}
+
+        <footer />
 	</body>
 </html>
 	
