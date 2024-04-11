@@ -1,8 +1,7 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import '../styles/global.css'
-const pageTitle = "About"
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = 'About me';
 
 const identity = {
     firstname: "Victor",
@@ -25,65 +24,39 @@ const fontWeight = "bold";
 const textCase = "uppercase";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-        <style define:vars={{skillColor, fontWeight, textCase}}>
-            h1 {
-              color: purple;
-              font-size: 4rem;
-            }
-            .skill {
-                color: var(--skillColor);
-                font-weight: var(--fontWeight);
-                text-transform: var(--textCase);
-
-            }
-          </style>
-	</head>
+<BaseLayout pageTitle = {pageTitle}>
     
-	<body>
-        <Header />
-		<h1>About</h1>
-        <h2> And...</h2>
-		<p> My name is Victor and this is my first web Astro-based</p>
+    <h1>About</h1>
+    <h2> And...</h2>
+    <p> My name is Victor and this is my first web Astro-based</p>
 
-        <p>He aquí algunos datos sobre mi. Yo sé q tan en spanglish dejenme ser</p>
+    <p>He aquí algunos datos sobre mi. Yo sé q tan en spanglish dejenme ser</p>
 
-        <ul>
+    <ul>
+        <li>
+            Me llamo {identity.firstname}.
+        </li>
+        <li>
+            Soy de {identity.country} pero actualmente vivo en {identity.currentCountry}.
+            y mi ocupacion es {identity.occupation}
+        </li>
+        {identity.hobbies.length >= 2 &&
             <li>
-                Me llamo {identity.firstname}.
+                Mis hobbies son {identity.hobbies.join(", ")}.  
             </li>
-            <li>
-                Soy de {identity.country} pero actualmente vivo en {identity.currentCountry}.
-                y mi ocupacion es {identity.occupation}
-            </li>
-            {identity.hobbies.length >= 2 &&
-                <li>
-                    Mis hobbies son {identity.hobbies.join(", ")}.  
-                </li>
-            }
-         </ul>
+        }
+    </ul>
 
-         <p>Mis habilidades son</p>
-         <ul>
-            {skills.map((skill) =>
-                <li class="skill"> {skill}</li>
-            )}
-         </ul>
+    <p>Mis habilidades son</p>
+    <ul>
+        {skills.map((skill) =>
+            <li class="skill"> {skill}</li>
+        )}
+    </ul>
 
-        {happy && <p>¡Estoy feliz!</p>}
-        {finished || <p>¡he terminado!</p>}
-        {goal === 3 ? <p>Mi objetivo es terminar en 3 días.</p> : <p>Mi objetivo no son 3 días.</p>}
+    {happy && <p>¡Estoy feliz!</p>}
+    {finished || <p>¡he terminado!</p>}
+    {goal === 3 ? <p>Mi objetivo es terminar en 3 días.</p> : <p>Mi objetivo no son 3 días.</p>}
+</BaseLayout>
 
-        <footer />
-        <script>
-            import "../scripts/menu.js";
-        </script>
-	</body>
-</html>
 	
